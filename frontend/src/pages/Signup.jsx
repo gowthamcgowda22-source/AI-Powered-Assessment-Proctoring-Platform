@@ -16,11 +16,14 @@ function Signup() {
     setLoading(true);
     try {
       await apiCall("/auth/signup", "POST", {
-    full_name: fullName,
-    email,
-    password,
-});
-      const loginData = await apiCall("/auth/login", "POST", { email, password });
+        full_name: fullName,
+        email,
+        password,
+      });
+      const loginData = await apiCall("/auth/login", "POST", {
+        email,
+        password,
+      });
       setToken(loginData.access_token);
       navigate("/dashboard");
     } catch (err) {
@@ -35,11 +38,11 @@ function Signup() {
       <div style={styles.left}>
         <div style={styles.brand}>
           <div style={styles.logo}>🎓</div>
-          <h1 style={styles.brandName}>PlaceMux</h1>
+          <h1 style={styles.brandName}>ProctorAI</h1>
           <p style={styles.brandTagline}>Secure. Smart. Reliable.</p>
         </div>
         <div style={styles.infoBox}>
-          <h3 style={styles.infoTitle}>Why PlaceMux?</h3>
+          <h3 style={styles.infoTitle}>Why ProctorAI?</h3>
           <ul style={styles.infoList}>
             <li>✅ AI-powered face detection</li>
             <li>✅ Real-time gaze tracking</li>
@@ -94,7 +97,6 @@ function Signup() {
               />
             </div>
 
-            
             <button type="submit" style={styles.button} disabled={loading}>
               {loading ? "Creating account..." : "Create Account →"}
             </button>
@@ -102,7 +104,9 @@ function Signup() {
 
           <p style={styles.linkText}>
             Already have an account?{" "}
-            <Link to="/login" style={styles.link}>Sign in</Link>
+            <Link to="/login" style={styles.link}>
+              Sign in
+            </Link>
           </p>
         </div>
       </div>
